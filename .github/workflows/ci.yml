@@ -1,22 +1,20 @@
 name: CI Pipeline
-on: [push]  # Запускать при каждом push
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
-
+          python-version: 3.9
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install pytest
-
       - name: Run tests
-        run: pytest test_app.py -v
+        run: pytest
